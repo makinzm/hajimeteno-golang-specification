@@ -1,0 +1,1 @@
+# hajimeteno-golang-specification
