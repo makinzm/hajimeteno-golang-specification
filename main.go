@@ -41,15 +41,22 @@ type Named interface {
 
 func main() {
   // 1. 基本的なセレクタの使用
-  base := Base{Name: "John"}
+  John := "John"
+  base := Base{Name: John}
   fmt.Println(base.Name)       // フィールドへのアクセス
   fmt.Println(base.GetName())  // メソッドへのアクセス
+  fmt.Println(&John)
 
   // 2. ポインタ経由のセレクタ
   basePtr := &Base{}
   fmt.Println(basePtr.Name)      // (*basePtr).Name の省略形
+  fmt.Println(&((*basePtr).Name))
+  fmt.Println(&(basePtr.Name))
   basePtr.Name = "Doe"
   fmt.Println(basePtr.GetName()) // 値レシーバーのメソッドもポインタから呼び出せる
+  fmt.Println(&(basePtr.Name))
+  gottenValue := basePtr.GetName()
+  fmt.Println(&(gottenValue)) // 変数のアドレスを取得
 
   // 3. 埋め込みとセレクタ
   derived := Derived{
